@@ -51,6 +51,16 @@ export function shuffleCells(cells:ICell[]){
     }
 }
 
+export function checkWin(cells:ICell[], size:number):boolean{
+    for (let i = 0; i < cells.length-1; i++) {
+        const value = (cells[i].y * size) + (cells[i].x + 1)
+        if (value !== cells[i].value) {
+            return false
+        }
+    }
+    return true
+}
+
 function randFromTo(from:number, to:number):number{
     let result = from - 0.5 + Math.random() * (to - from +1);
     return Math.round(result);

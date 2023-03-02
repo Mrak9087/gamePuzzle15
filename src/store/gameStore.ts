@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { ICell, initMap, shuffleCells } from "../helpers/helpers";
+import { checkWin, ICell, initMap, shuffleCells } from "../helpers/helpers";
 
 
 const initialState = {
@@ -15,6 +15,7 @@ export const gameStore = createSlice({
     initialState: initialState,
     reducers: {
         moveCell(state,payload:PayloadAction<ICell>){
+            if (state.isWin) return
             const {x,y,value} = payload.payload;
             const emptyCell = state.cells[state.cells.length-1]
             if (Math.abs(x-emptyCell.x) + Math.abs(y-emptyCell.y) != 1) return;
@@ -28,9 +29,11 @@ export const gameStore = createSlice({
 
             emptyCell.x = x;
             emptyCell.y = y;
-
+            
+            state.isWin = checkWin(state.cells,state.size);
         },
         shuffle(state){
+            state.isWin = false;
             shuffleCells(state.cells);
         }
     } 
