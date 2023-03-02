@@ -1,13 +1,17 @@
 import {FC, useMemo} from 'react'
+import { useDispatch } from 'react-redux';
 import { ICell } from '../../helpers/helpers'
+import { moveCell } from '../../store/gameStore';
+import { AppDispatch } from '../../store/store';
 import './cellView.css';
 
 interface ICellView {
     cell:ICell
-    handleClick:(cell:ICell)=>void;
 }
 
-const CellView:FC<ICellView> = ({cell,handleClick})=>{
+const CellView:FC<ICellView> = ({cell})=>{
+
+    const dispatch = useDispatch<AppDispatch>()
 
     const cl = useMemo(()=>{
         return cell.value === 0 ? 'cell empty' : 'cell'
@@ -20,6 +24,10 @@ const CellView:FC<ICellView> = ({cell,handleClick})=>{
     const lft = useMemo(()=>{
         return cell.x * 50
     },[cell.x])
+
+    const handleClick = (cell:ICell) => {
+        dispatch(moveCell(cell));
+    }
     
     return (
         <div 

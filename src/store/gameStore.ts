@@ -3,14 +3,9 @@ import { ICell, initMap } from "../helpers/helpers";
 
 
 const initialState = {
-    map: initMap(4),
+    cells: initMap(4),
     isWin: false,
     size: 4,
-    emptyCell:{
-        x:3,
-        y:3,
-        value:0
-    } as ICell,
 }
 
 
@@ -21,25 +16,19 @@ export const gameStore = createSlice({
     reducers: {
         moveCell(state,payload:PayloadAction<ICell>){
             const {x,y,value} = payload.payload;
-            if (Math.abs(x-state.emptyCell.x) + Math.abs(y-state.emptyCell.y) != 1) return;
-            // console.log(x,y);
-            const emptyX = state.emptyCell.x;
-            const emptyY = state.emptyCell.y;
+            const emptyCell = state.cells[state.cells.length-1]
+            if (Math.abs(x-emptyCell.x) + Math.abs(y-emptyCell.y) != 1) return;
 
-            state.map[y][x] = state.emptyCell;
-            state.map[y][x].x = x;
-            state.map[y][x].y = y;
+            const emptyX = emptyCell.x;
+            const emptyY = emptyCell.y;
+        
+            const cell = state.cells[value-1];
+            cell.x = emptyX;
+            cell.y = emptyY;
 
-            state.map[emptyY][emptyX] = {
-                ...payload.payload,
-                x : emptyX,
-                y : emptyY,
-            };
-            // const tmpMap:ICell[][] = [];
-            // state.map.forEach(())
-            // console.log('before',state.map)
-            state.map = state.map.map((item)=>[...item])
-            // console.log('after',state.map)
+            emptyCell.x = x;
+            emptyCell.y = y;
+
         },
     } 
 })

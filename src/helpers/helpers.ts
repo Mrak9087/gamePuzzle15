@@ -4,10 +4,9 @@ export interface ICell {
     value:number;
 }
 
-export function initMap(size:number):ICell[][]{
-    const result:ICell[][] = [];
+export function initMap(size:number):ICell[]{
+    const result:ICell[]= [];
     for (let i = 0; i < size; i++) {
-        const row: ICell[] = []
         for (let j = 0; j < size; j++) {
             const val = (i * size) + (j+1); 
             const cell: ICell = {
@@ -15,11 +14,10 @@ export function initMap(size:number):ICell[][]{
                 x:j,
                 value: val
             }
-            row.push(cell)
+            result.push(cell)
         }
-        result.push(row)
     }
-    result[size-1][size-1].value = 0;
+    result[result.length-1].value = 0;
     return result;
 }
 
