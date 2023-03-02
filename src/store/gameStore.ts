@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { ICell, initMap } from "../helpers/helpers";
+import { ICell, initMap, shuffleCells } from "../helpers/helpers";
 
 
 const initialState = {
@@ -30,9 +30,12 @@ export const gameStore = createSlice({
             emptyCell.y = y;
 
         },
+        shuffle(state){
+            shuffleCells(state.cells);
+        }
     } 
 })
 
-export const {moveCell} = gameStore.actions;
+export const {moveCell, shuffle} = gameStore.actions;
 
 export default gameStore.reducer

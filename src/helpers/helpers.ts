@@ -21,10 +21,37 @@ export function initMap(size:number):ICell[]{
     return result;
 }
 
-export function indexToCoord(index:number, size:number){
-    if (index < 0) index = 0;
-    if (index > size-1) index = size-1;
-    const x = index % size;
-    const y = Math.floor(index / size);
-    return {x,y};
+export function shuffleCells(cells:ICell[]){
+
+    const emptyCell = cells.filter(item => item.value === 0)[0]
+
+    const shiftRand = () => {
+        let step = randFromTo(0,4);
+        let x = emptyCell.x;
+        let y = emptyCell.y;
+        
+        switch(step){
+            case 0: x--; break;
+            case 1: x++; break;
+            case 2: y--; break;
+            case 3: y++; break;
+        }
+        
+        const cell = cells.filter(item => item.x === x && item.y === y)[0];
+        if (cell) {
+            cell.x = emptyCell.x;
+            cell.y = emptyCell.y;
+            emptyCell.x = x;
+            emptyCell.y = y;
+        }
+    }
+
+    for (let i = 0; i < 1000; i++) {
+        shiftRand()
+    }
+}
+
+function randFromTo(from:number, to:number):number{
+    let result = from - 0.5 + Math.random() * (to - from +1);
+    return Math.round(result);
 }
