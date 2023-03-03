@@ -1,0 +1,23 @@
+.btnShuffle{
+    padding: 20px 0 20px;
+    font-family: Arial;
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+    outline: none;
+    border: none;
+
+    cursor: pointer;
+    transition: all 0.5s ease;
+    color: white;
+
+    width: 250px;
+    background-color: #c2b6b6;
+    background-image: linear-gradient(315deg, #3fcc7a 0%, #772cce 74%);
+    transition: all 0.1s linear;
+}
+
+.btnShuffle:active{
+    transform: scale(0.95);
+}

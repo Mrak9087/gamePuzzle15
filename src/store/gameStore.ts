@@ -5,6 +5,7 @@ import { checkWin, ICell, initMap, shuffleCells } from "../helpers/helpers";
 const initialState = {
     cells: initMap(4),
     isWin: false,
+    isPlay: false,
     size: 4,
 }
 
@@ -15,7 +16,7 @@ export const gameStore = createSlice({
     initialState: initialState,
     reducers: {
         moveCell(state,payload:PayloadAction<ICell>){
-            if (state.isWin) return
+            if (state.isWin || !state.isPlay) return
             const {x,y,value} = payload.payload;
             const emptyCell = state.cells[state.cells.length-1]
             if (Math.abs(x-emptyCell.x) + Math.abs(y-emptyCell.y) != 1) return;
@@ -31,14 +32,20 @@ export const gameStore = createSlice({
             emptyCell.y = y;
             
             state.isWin = checkWin(state.cells,state.size);
+            state.isPlay = !state.isWin;
         },
         shuffle(state){
             state.isWin = false;
+            state.isPlay = true;
             shuffleCells(state.cells);
+        },
+        setSize(state,payload:PayloadAction<number>){
+            state.size = payload.payload;
+            state.cells = initMap(state.size)
         }
     } 
 })
 
-export const {moveCell, shuffle} = gameStore.actions;
+export const {moveCell, shuffle, setSize} = gameStore.actions;
 
 export default gameStore.reducer

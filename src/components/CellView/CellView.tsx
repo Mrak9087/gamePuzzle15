@@ -18,11 +18,11 @@ const CellView:FC<ICellView> = ({cell})=>{
     },[cell.value])
 
     const tp = useMemo(()=>{
-        return cell.y * 50
+        return cell.y * 100
     },[cell.y])
 
     const lft = useMemo(()=>{
-        return cell.x * 50
+        return cell.x * 100
     },[cell.x])
 
     const handleClick = (cell:ICell) => {

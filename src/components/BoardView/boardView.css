@@ -1,8 +1,14 @@
 .board {
-    width: 200px;
+    background-color: #332750;
+    padding: 10px;
+}
+
+.board-wrap{
+    width: calc(var(--size)*100px);
+    height: calc(var(--size)*100px);
+    
     position: relative;
     display: grid;
     grid-template-rows: repeat(var(--size),1fr);
     grid-template-columns: repeat(var(--size),1fr);
-    /* flex-wrap: wrap; */
 }
