@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { shuffle } from '../../store/gameStore';
 import { AppDispatch, RootState } from '../../store/store';
@@ -10,10 +10,15 @@ import './boardView.css';
 const BoardView = () => {
     const store = useSelector((state:RootState)=>state)
     const dispatch = useDispatch<AppDispatch>()
+    const ref = useRef<HTMLDivElement|null>(null);
+
+    useEffect(()=>{
+        console.log(ref.current?.getClientRects());
+    },[])
 
     return (
         <>
-            <div className='board'>
+            <div ref={ref} className='board'>
                 <div 
                     className='board-wrap'
                     style={{
@@ -26,6 +31,9 @@ const BoardView = () => {
                         })
                     }
                 </div>
+                {
+                    store.isWin && <div className='message'> Победа! </div>
+                }
             </div>
             {/* <button onClick={()=> dispatch(shuffle())}>Перемешать</button> */}
             <ButtonShuffle />

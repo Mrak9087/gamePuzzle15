@@ -1,6 +1,10 @@
 .board {
-    background-color: #332750;
-    padding: 10px;
+    position: relative;
+    background-color: #509ab0;
+    /* padding: 10px; */
+    /* border-style: ridge; */
+    border: 10px solid #534983;
+    border-radius: 10px;
 }
 
 .board-wrap{
@@ -11,4 +15,19 @@
     display: grid;
     grid-template-rows: repeat(var(--size),1fr);
     grid-template-columns: repeat(var(--size),1fr);
+}
+
+.message{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(73, 46, 130, 0.501);
+    font-size: 40px;
+    font-weight: bold;
+    color: lime;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
