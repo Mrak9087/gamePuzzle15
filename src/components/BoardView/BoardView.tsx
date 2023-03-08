@@ -1,19 +1,16 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { shuffle } from '../../store/gameStore';
-import { AppDispatch, RootState } from '../../store/store';
-import ButtonShuffle from '../ButtonShuffle';
+import React, { useEffect, useRef } from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
 import CellView from '../CellView';
 
 import './boardView.css';
 
 const BoardView = () => {
     const store = useSelector((state:RootState)=>state)
-    const dispatch = useDispatch<AppDispatch>()
     const ref = useRef<HTMLDivElement|null>(null);
 
     useEffect(()=>{
-        console.log(ref.current?.getClientRects());
+        console.log(document.body.getBoundingClientRect());
     },[])
 
     return (
@@ -35,8 +32,6 @@ const BoardView = () => {
                     store.isWin && <div className='message'> Победа! </div>
                 }
             </div>
-            {/* <button onClick={()=> dispatch(shuffle())}>Перемешать</button> */}
-            <ButtonShuffle />
         </>
     );
 }

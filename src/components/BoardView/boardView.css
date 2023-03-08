@@ -8,8 +8,8 @@
 }
 
 .board-wrap{
-    width: calc(var(--size)*100px);
-    height: calc(var(--size)*100px);
+    width: calc(var(--size)*70px);
+    height: calc(var(--size)*70px);
     
     position: relative;
     display: grid;

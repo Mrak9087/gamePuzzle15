@@ -1,5 +1,5 @@
 
-import { FC } from 'react';
+import { FC, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../../store/store';
 import { setSize } from '../../../store/gameStore';
@@ -19,10 +19,20 @@ const MenuItem:FC<IMenuItem> = ({text,size}) => {
         dispatch(setSize(size))
     }
 
+    const clActive = useMemo(()=>{
+        return store.size === size ? 'activeItem' : ''
+    },[size])
+
+    const clNone = useMemo(()=>{
+        const docWidth = Math.floor(document.body.getBoundingClientRect().width);
+        const gameWidth = size * 70;
+        return gameWidth > docWidth ? 'itemNone' : ''
+    },[size])
+
     return (
         <div
             onClick={handleClick}
-            className='menuItem'
+            className={`menuItem ${clActive} ${clNone}` }
         >
             {text}
         </div>

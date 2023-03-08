@@ -4,13 +4,18 @@
     align-items: center;
     width: 100%;
     font-size: 24px;
+    font-weight: bold;
     font-family: VenomMincho;
-    color: #3cf54b;
+    color: #67eac1;
     padding: 10px 5px;
     cursor: pointer;
     border-bottom: 2px solid rgba(158, 157, 157, 0.514);
-  }
-  
-  .activeItem {
-    color:#553bb6;
-  }
+}
+
+.activeItem {
+  color:#fe842e;
+}
+
+.itemNone{
+  display: none;
+}

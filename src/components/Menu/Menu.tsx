@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import MenuContent from './MenuContent';
 
 import './menu.css';
