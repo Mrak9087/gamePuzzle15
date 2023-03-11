@@ -16,9 +16,11 @@
     width: 250px;
     background-color: #c2b6b6;
     background-image: linear-gradient(315deg, #3fcc7a 0%, #772cce 74%);
+    box-shadow: 5px 5px 10px #000;
     transition: all 0.1s linear;
 }
 
 .btnShuffle:active{
     transform: scale(0.95);
+    box-shadow: 1px 1px 0 #000;
 }
